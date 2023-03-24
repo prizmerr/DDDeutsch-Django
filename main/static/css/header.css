@@ -1,0 +1,32 @@
+.headerLink {
+    padding: 1vh 11vw;
+    background-color: #9aced5;
+    border-radius: 0.3rem;
+    font-family: Mariupol;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+.headerLink:hover {
+    background-color: #7cc3cd;
+}
+
+#header {
+    width: 100%;
+    align-items: center;
+}
+
+#headerLogo {
+    height: 6rem;
+}
+
+#headerLinks {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-around;
+}
+
+#mainName {
+    font-family: WWF;
+}

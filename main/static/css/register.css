@@ -1,0 +1,63 @@
+@import url("vars.css");
+
+body {
+    overflow: auto;
+}
+
+.regBlock {
+    width: 45%;
+}
+
+.passBox {
+    position: relative;
+}
+
+.inputField {
+    width: 100%;
+}
+
+.eyes {
+    height: var(--pass-eye-size);
+}
+
+#regHeader {
+    width: 100%;
+    text-align: center;
+    font-size: 8vh;
+    font-family: WWF;
+    height: 15vh;
+    word-spacing: 1vw;
+    margin-bottom: 1rem;
+}
+
+#description {
+    text-align: justify;
+    font-family: Mariupol;
+    font-size: 1.4rem;
+    word-spacing: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+#buttBlock {
+    text-align: center;
+}
+
+#pass1 {
+    margin-bottom: 0.5rem;
+}
+
+#mainRegBox {
+    display: flex;
+    justify-content: space-around;
+}
+
+#message {
+    color: red;
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: none;
+}
+
+#enterButt {
+    margin-top: 2vh;
+}

@@ -1,0 +1,35 @@
+body {
+    overflow-y: auto;
+}
+
+.card {
+    margin: 1em;
+    width: 18em;
+}
+
+.card-title {
+    font-family: "uzsans";
+}
+
+.card-subtitle {
+    font-family: "namu";
+}
+
+.card-text {
+    margin-bottom: 3em;
+}
+
+.cardButtons {
+    position: absolute;
+    bottom: 1em;
+}
+
+#headerBox {
+    text-align: center;
+    font-family: "Mariupol";
+}
+
+#convaDiv {
+    display: none;
+    justify-content: center;
+}

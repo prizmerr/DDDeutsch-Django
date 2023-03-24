@@ -1,0 +1,160 @@
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/generous.css' %}">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'scripts/showMessage.js' %}"></script>
+    <title>Регистрация</title>
+</head>
+
+<body>
+    <header id="regHeader">
+        Регистрация в D<font color="red">D</font><font color="yellow">D</font>eutsch
+    </header>
+    <div id="mainRegBox">
+        <div id="regInput" class="regBlock">
+            <form action="" method="post" id="form">
+                {% csrf_token %}
+                <label class="labelField">Логин:</label>
+                <input placeholder="Придумайте логин" name="login" id="login"
+                    class="form-control form-control-lg inputField">
+                <label class="labelField">Пароль:</label>
+                <div id="passBox1" class="passBox input-group mb-4 inputField">
+                    <input placeholder="Придумайте пароль" name="pass1" type="password" id="pass1"
+                        class="form-control form-control-lg" aria-describedby="eye1">
+                    <button class="btn btn-outline-secondary" id="eye1"><img src="{% static 'images/svg/eye-opened.svg' %}"
+                            id="passEyeImg1" class="eyes"></button>
+                </div>
+                <div id="passBox2" class="passBox input-group mb-4 inputField">
+                    <input placeholder="Повторите пароль" name="pass2" type="password" id="pass2"
+                        class="form-control form-control-lg" aria-describedby="eye2">
+                    <button class="btn btn-outline-secondary" id="eye2"><img src="{% static 'images/svg/eye-opened.svg' %}"
+                            id="passEyeImg2" class="eyes"></button>
+                </div>
+                <label class="labelField">Введите элктронную почту:</label>
+                <input placeholder="Введите почту" name="email" id="email" type="email"
+                    class="form-control form-control-lg inputField">
+            </form>
+        </div>
+        <div id="otherInfo" class="regBlock">
+            <div id="description">
+                Сервис DDDeutsch позволяет в игровой форме запоминать артикли к немецким существительным.
+                Заучивание слов основано на технике <b>интервального повторения</b>.
+                Ее суть заключается в том, что слово повторяется через определенный промежуток времени,
+                который увеличивается со временем, когда слово начинает забываться.
+            </div>
+            <div id="buttBlock">
+                <input type="submit" value="Зарегистрироваться" id="submit" class="btn btn-primary btn-lg" form="form">
+                <br>
+                <button id="enterButt" class="btn btn-primary btn-lg" onclick="document.location.href='/enter'">На страницу входа</button>
+            </div>
+            <p id="message"></p>
+        </div>
+    </div>
+    <script src="{% static 'scripts/checkPhone.js' %}"></script>
+    <script>
+
+        $("#submit").click(function (e) {
+            e.preventDefault();
+
+            $("#submit").attr("disabled", true);
+
+            const form = document.forms["form"];
+            const log = form.elements["login"].value;
+            const pass1 = form.elements["pass1"].value;
+            const pass2 = form.elements["pass2"].value;
+            const email = form.elements["email"].value;
+
+            const checked = check(log, pass1, pass2, email);
+
+            if (checked === true) {
+                $.ajax({
+                    type: "POST",
+                    url: "/accActions/tryToRegister/",
+                    data: {
+                        csrfmiddlewaretoken: "{{ csrf_token }}",
+                        login: log,
+                        password: pass1,
+                        email: email
+                    },
+                    success: (data) => {
+                        switch (data) {
+                            case "error":
+                                showMessage("На сервере произошла ошибка. Попробуйте позднее.");
+                                break;
+                            case "saved":
+                                console.log("user created")
+                                $(location).attr("href", "/enter/");
+                                break;
+                            case "loginExists":
+                                showMessage("Пользователь с таким логином уже существует.");
+                                $("#submit").removeAttr("disabled");
+                                break;
+                            case "emailExists":
+                                showMessage("Пользователь с таким email уже существует.");
+                                $("#submit").removeAttr("disabled");
+                                break;
+                            default:
+                                console.log(data);
+                                break;
+                        }
+                    }
+                });
+            } else {
+                $("#message").text(checked);
+                $("#message").fadeIn();
+                $("#submit").removeAttr("disabled");
+            }
+        });
+
+        $("#eye1").click((e) => {
+            e.preventDefault();
+
+            let classes = $("#eye1").attr("class").split(" ");
+            if (classes.indexOf("view") === -1) {
+                $("#eye1").addClass("view");
+                $("#pass1").attr("type", "text");
+                $("#passEyeImg1").attr("src", "{% static 'images/svg/eye-closed.svg' %}")
+            } else {
+                $("#eye1").removeClass("view");
+                $("#pass1").attr("type", "password");
+                $("#passEyeImg1").attr("src", "{% static 'images/svg/eye-opened.svg' %}")
+            }
+        });
+        $("#eye2").click((e) => {
+            e.preventDefault();
+
+            let classes = $("#eye2").attr("class").split(" ");
+            if (classes.indexOf("view") === -1) {
+                $("#eye2").addClass("view");
+                $("#pass2").attr("type", "text");
+                $("#passEyeImg2").attr("src", "{% static 'images/svg/eye-closed.svg' %}")
+            } else {
+                $("#eye2").removeClass("view");
+                $("#pass2").attr("type", "password");
+                $("#passEyeImg2").attr("src", "{% static 'images/svg/eye-opened.svg' %}")
+            }
+        });
+
+        function check(log, pass1, pass2, email, date) {
+            if (log !== "" && pass1 !== "" && pass2 !== "" && email !== "" && date !== "") {
+                if (pass1 === pass2) {
+                    if (/[0-9]/.test(pass1) && /[a-zа-я]/.test(pass1) && /[A-ZА-Я]/.test(pass1) && pass1.length > 8) {
+                        if (email !== "help.dddeutsch@gmail.com") return true;
+                        else return "Введите корректный адрес электронной почты.";
+                    } else return "В пароле должны использоваться цифры, заглавные и строчные буквы. Пароль должен быть \
+                        длиннее 8 символов";
+                } else return "Введенные пароли не совпадают.";
+            } else return "Все поля обязательны к заполнению."
+        }
+    </script>
+</body>
+
+</html>

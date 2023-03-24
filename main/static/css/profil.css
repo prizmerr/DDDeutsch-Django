@@ -1,0 +1,91 @@
+@import url("vars.css");
+
+body {
+    overflow-y: auto;
+}
+
+.boxHeaders {
+    background-color: white;
+    padding: 2vh;
+    border-radius: 0.3rem;
+    font-family: NeutralFace;
+    letter-spacing: 1px;
+}
+
+.profilBoxes {
+    width: 75%;
+    background-color: #d1d1d1;
+    border-radius: var(--box-border-radius);
+    padding: 3% 3% 3% 3%;
+    align-self: center;
+    margin-bottom: 2vh;
+}
+
+.fieldsBoxes {
+    text-align: left;
+}
+
+.fields {
+    padding: 2%;
+    font-family: NAMU;
+}
+
+.profilButton {
+    font-size: smaller;
+}
+
+#mainBox {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#changeEmail {
+    margin-top: 1vh;
+}
+
+#writeBox {
+    padding-bottom: 2%;
+}
+
+#sendText {
+    margin-top: 2%;
+}
+
+#exitButton, #deleteButton {
+    background-color: #ff3a3a;
+    border: 1px solid #ff3a3a;
+    padding: 2vh;
+}
+
+#exitButton:hover, #deleteButton:hover {
+    color: #fff;
+    background-color: red;
+    border-color: #ff3a3a;
+}
+
+#exitButton:active, #deleteButton:active {
+    color: #fff;
+    background-color: #d60000;
+    border-color: #ff3a3a;
+}
+
+#submitNewEmail {
+    margin-bottom: 4vh;
+}
+
+#closeButt {
+    height: 3vh;
+    cursor: pointer;
+    position: absolute;
+    top: 1vh;
+    right: 1vh;
+}
+
+#sendPass {
+    margin-top: 3vh;
+}
+
+#writeTextField {
+    width: 90%;
+}

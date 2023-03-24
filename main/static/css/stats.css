@@ -1,0 +1,56 @@
+@import url("vars.css");
+
+body {
+    overflow-y: auto;
+}
+
+.statsBoxes {
+    width: 75%;
+    background-color: #d1d1d1;
+    border-radius: var(--box-border-radius);
+    padding: 3% 3% 3% 3%;
+    align-self: center;
+    margin-bottom: 2vh;
+}
+
+.blackLines {
+    background-color: black;
+    height: 1.2px;
+    margin: 4px 0;
+}
+
+.changeArticleInput {
+    margin: 0 0.5em;
+}
+
+.form-check {
+    text-align: initial;
+}
+
+.wordsTables {
+    margin-top: 2em;
+}
+
+.deleteListButts {
+    margin-top: 0.5em;
+}
+
+#mainBox {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#deleteWordButt, .renameListButts {
+    margin-left: 1em;
+}
+
+#passEyeImg {
+    height: var(--pass-eye-size);
+}
+
+#canvas {
+    height: 60vh;
+    position: relative;
+    border-radius: var(--box-border-radius);
+}

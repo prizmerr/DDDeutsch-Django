@@ -1,0 +1,86 @@
+@import url("vars.css");
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.ms-lg {
+    margin-left: var(--margin-header);
+}
+
+.me-lg {
+    margin-right: var(--margin-header);
+}
+
+
+body {
+    overflow: hidden;
+    background-color: var(--body-bg);
+}
+
+.labelField {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.inputField {
+    width: 80%;
+}
+
+.inputField::placeholder {
+    color: #515151;
+    opacity: 0.6;
+}
+
+.inputField:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #bdbdbd;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+}
+
+.windows {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: aliceblue;
+    width: 50%;
+    max-height: 75%;
+    padding: 5vh;
+    text-align: center;
+    overflow: auto;
+    border: 1px solid black;
+    border-radius: 0.4rem;
+    box-shadow: 1vw 2vh 1vw 0vh #ababab;
+    z-index: 4;
+}
+
+.mg-top-3vh {
+    margin-top: 3vh;
+}
+
+#closeButt {
+    height: 3vh;
+    cursor: pointer;
+    position: absolute;
+    top: 1vh;
+    right: 1vh;
+}
+
+#messWind {
+    position: fixed;
+    background: #bbbbbb;
+    left: 50%;
+    bottom: 10%;
+    transform: translate(-50%);
+    padding: 1%;
+    border-radius: 1em;
+    border: solid;
+    display: none;
+    z-index: 10;
+}
