@@ -5,13 +5,13 @@ from datetime import timedelta
 
 def startPage(req):
     if req.user.is_authenticated:
-        return HttpResponseRedirect("/study/profile/")
+        return HttpResponseRedirect("/study/profil/")
     else:
         return HttpResponseRedirect("/enter/")
     
 def enterPage(req):
     if req.user.is_authenticated:
-        return HttpResponseRedirect("/study/profile/")
+        return HttpResponseRedirect("/study/profil/")
     else:
         return render(req, "login.html")
     
@@ -22,6 +22,6 @@ def setCookie(req):
 
 def registerPage(req):
     if req.user.is_authenticated:
-        return HttpResponseRedirect("/study/profile/")
+        return HttpResponseRedirect("/study/profil/")
     else:
         return render(req, "register.html")

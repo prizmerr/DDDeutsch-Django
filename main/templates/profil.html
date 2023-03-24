@@ -1,0 +1,55 @@
+<html lang="ru">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible", content="IE=edge">
+    <meta name="viewport", content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/> 
+    <link rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css", integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor", crossorigin="anonymous">
+    <link rel="stylesheet", href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet", href="{% static 'css/generous.css' %}">
+    <link rel="stylesheet", href="{% static 'css/header.css' %}">
+    <link rel="stylesheet", href="{% static 'css/profil.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>let token = "{{ csrf_token }}"</script>
+    <script src="{% static 'scripts/showMessage.js' %}"></script>
+    <title>Ваш профиль</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    {% include 'partials/header.html' %}
+    <div id="mainBox">
+        <div id="personBox" class="profilBoxes">
+            <p id="personBoxHeader" class="boxHeaders">Информация о профиле</p>
+            <div id="personFieldsBox" class="fieldsBoxes">
+                <div id="personLoginField" class="personFields fields"> Ваш логин: 
+                    <span id="personLogin"></span>
+                </div>
+                <div id="personEmailField" class="personFields fields"> Ваш email: 
+                    <span id="personEmail"></span>
+                    <br>
+                    <button id="changeEmail" class="btn btn-primary profilButton">Изменить email</button>
+                </div>
+                <div id="personPassField" class="personFields fields">
+                    <button id="changePass" class="btn btn-primary profilButton">Изменить пароль</button>
+                </div>
+            </div>
+        </div>
+        <div id="writeBox" class="profilBoxes">
+            <p id="writeBoxHeader" class="boxHeaders">Связаться с разработчиками</p>
+            <div id="writeFieldsBox", class="fieldsBox">
+                <textarea id="writeTextField" class="fields" rows="12"></textarea>
+                <br>
+                <button id="sendText" class="btn btn-primary" onclick="sendMessage()">Отправить</button>
+            </div>
+        </div>
+        <button id="exitButton" class="btn btn-danger profilBoxes">Выйти</button>
+        <button id="deleteButton" class="btn btn-danger profilBoxes">Удалить аккаунт</button>
+        
+    </div>
+    {% include 'partials/footer.html' %}
+    <script src="{% static 'scripts/generous.js' %}"></script>
+    <script src="{% static 'scripts/profil.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="{% static 'scripts/checkPhone.js' %}"></script>
+</body>
+</html>

@@ -1,5 +1,6 @@
+{% load static %}
 <header id="header" class="d-flex flex-wrap justify-content-center pt-3">
-    <img src="../../images/bigLogo.png" id="headerLogo" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto ms-lg">
+    <img src="{% static 'images/bigLogo.png' %}" id="headerLogo" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto ms-lg">
     <ul id="pills" class="nav nav-pills me-lg">
         <li id="headerStudy" class="nav-item p-3">
             <a href="/study/learning" class="nav-link" id="learnLink">Обучение</a>

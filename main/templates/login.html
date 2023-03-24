@@ -116,17 +116,19 @@
             sended = true;
 
             $.post(
-                "/email/change?login=true",
-                { login: $("#loginInput").val() },
+                "/email/sendCode/",
+                { 
+                    username: $("#loginInput").val(),
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                },
                 (data) => {
                     if (data === "error") {
                         showMessage("На сервере произошла ошибка.");
                         sended = false;
-                    } else if (data === "not found") {
+                    } else if (data === "notFound") {
                         showMessage("Пользователь с таким логином не найден.")
                         sended = false;
                     } else {
-                        data = JSON.parse(data);
                         changeEmailCode = data.code;
                         passId = data.id;
                         $("#loginButt").attr("disabled", "true");
@@ -174,8 +176,9 @@
             if ($("#codeInp").val() == "") return showMessage("Введите код подтверждения.");
 
             $.post(
-                "/email/checkCodes",
+                "/email/checkCodes/",
                 {
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
                     code1: changeEmailCode,
                     code2: $("#codeInp").val()
                 },
@@ -227,14 +230,15 @@
             }
 
             $.post(
-                "/accActions/changePerson",
+                "/accActions/changePass/",
                 {
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
                     key: "password",
-                    value: pass1,
+                    newPass: pass1,
                     id: passId
                 },
                 (data) => {
-                    if (data) {
+                    if (data == "success") {
                         showMessage("Пароль изменен.");
                         document.location.reload();
                     } else showMessage("На сервере произошла ошибка.");
