@@ -13,7 +13,7 @@ def tryToRegister(req):
         return HttpResponse("error")
     if User.objects.filter(username=usname).count() != 0:
         return HttpResponse("loginExists")
-    if User.objects.filter(email=email).count() != 0:
+    if User.objects.filter(email=email).count() != 0 or email == "dddeutsch.help@gmail.com":
         return HttpResponse("emailExists")
     try:
         user = User.objects.create_user(usname, email, password)
