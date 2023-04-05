@@ -1,11 +1,8 @@
-from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
-from datetime import timedelta
 from django.core.mail import send_mail
 from django.conf import settings
 from random import randint
-from django.contrib.auth import authenticate
 
 def sendCode(req):
     username = req.POST.get("username")

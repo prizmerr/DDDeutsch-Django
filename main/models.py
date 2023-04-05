@@ -11,7 +11,7 @@ class UserStat(models.Model):
         default = [0,0,0,0,0,0,0]
     )
     wordsBeingStudied = models.SmallIntegerField(default=0)
-    wordsListsNames = models.TextField(default="'Основные слова':'0'")  # ";'name':'id'"
+    wordsListsNames = models.TextField(default="Основные слова")  # ";name"
     updated = models.DateTimeField(default=datetime.now())
 
 class WordsStat(models.Model):

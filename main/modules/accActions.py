@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.db import Error
 from django.contrib.auth.models import User
 from datetime import datetime, timedelta, timezone
@@ -60,7 +60,7 @@ def updateRepeats(req):
         days = (now.date() - updated).days
         repeats = user.repeatsInWeek[days:]+[0 for _ in range(days)]
         UserStat.objects.filter(user_id=id).update(repeatsInWeek=repeats, updated=now)
-        return HttpResponse("success")
+        return JsonResponse({"0":list(map(int, repeats))})
     else:
         return HttpResponse("unlogged")
 
@@ -110,3 +110,15 @@ def changeEmail(req):
     id = req.user.id
     User.objects.filter(id=id).update(email=newEmail)
     return HttpResponse("success")
+
+def getUserStats(req):
+    id = req.user.id
+    stats = UserStat.objects.get(user_id=id)
+    wordsListsNames = stats.wordsListsNames.split(";")
+    wordsBeingStudied = stats.wordsBeingStudied
+    repeatsInWeek = list(map(int, stats.repeatsInWeek))
+    wordsLists = []
+    for i in range(len(wordsListsNames)):
+        wordsLists.append(list(WordsStat.objects.filter(table_id=i, user_id=id).values()))
+    return JsonResponse({"wordsListsNames":wordsListsNames, "wordsBeingStudied":wordsBeingStudied, 
+                         "wordsLists":wordsLists, "repeatsInWeek":repeatsInWeek})

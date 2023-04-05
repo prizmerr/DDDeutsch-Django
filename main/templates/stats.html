@@ -1,0 +1,50 @@
+<html lang="ru">
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible", content="IE=edge">
+        <meta name="viewport", content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/> 
+        <link rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css", integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor", crossorigin="anonymous">
+        <link rel="stylesheet", href="{% static 'css/fonts.css' %}">
+        <link rel="stylesheet", href="{% static 'css/generous.css' %}">
+        <link rel="stylesheet", href="{% static 'css/header.css' %}">
+        <link rel="stylesheet", href="{% static 'css/stats.css' %}">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+        <script>
+            let token = "{{ csrf_token }}"
+            let eyeOpen = "{% static 'images/svg/eye-opened.svg' %}"
+            let eyeClose = "{% static 'images/svg/eye-closed.svg' %}"
+            function canvasOn() {
+                $("body").append(`\x3Cscript src="{% static 'scripts/stats/canvasStats.js' %}">\x3C/script>`)
+            }
+        </script>
+        <script src="{% static 'scripts/showMessage.js' %}"></script>
+        <title>Ваша статистика</title>
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+        {% include 'partials/header.html' %}
+        <div id="mainBox">
+            <div id="weekStats" class="statsBoxes">
+                <div id="canvas"></div>
+                <p>Слов изучается: 
+                    <span id="wordsBeingStudied"></span>
+                </p>
+            </div>
+        </div>
+        {% include 'partials/footer.html' %}
+
+        <script src="{% static 'scripts/generous.js' %}"></script>
+        <script src="{% static 'scripts/stats/stats.js' %}"></script>
+        <script src="{% static 'scripts/stats/wordWindow.js' %}"></script>
+        <script src="{% static 'scripts/stats/editWord.js' %}"></script>
+        <script src="{% static 'scripts/stats/listWindow.js' %}"></script>
+        <script src="{% static 'scripts/stats/editList.js' %}"></script>
+        <script src="{% static 'scripts/stats/passWindow.js' %}"></script>
+        <script src="{% static 'scripts/stats/renameWindow.js' %}"></script>
+        <script src="{% static 'scripts/stats/fillFields.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js", integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2", crossorigin="anonymous"></script>
+        <script src="{% static 'scripts/checkPhone.js' %}"></script>
+    </body>
+</html>
