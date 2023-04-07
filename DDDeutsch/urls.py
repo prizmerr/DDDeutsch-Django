@@ -18,7 +18,8 @@ urlAccActions = [
 
 urlStudy = [
     path('profil/', views.profil),
-    path('stats/', views.stats)
+    path('stats/', views.stats),
+    path('learning/', views.learning)
 ]
 
 urlEmail = [
@@ -33,7 +34,9 @@ urlWords = [
     path('deleteList/', views.deleteList),
     path('renameList/', views.renameList),
     path('saveWord/', views.saveWord),
-    path('deleteWord/', views.deleteWord)
+    path('deleteWord/', views.deleteWord),
+    path('getAllWords/', views.getAllWords),
+    path('updateWords/', views.updateWords)
 ]
 
 urlpatterns = [

@@ -1,10 +1,9 @@
-from django.http import HttpResponse, JsonResponse
-from django.db import Error
-from django.contrib.auth.models import User
-from datetime import datetime, timedelta, timezone
-from ..models import WordsStat, MainWord, UserStat
-from django.contrib.auth import authenticate, login, logout
-from json import loads
+from django.http import HttpResponse
+from ..models import WordsStat, UserStat
+from django.contrib.auth import authenticate
+from json import loads, dumps
+import datetime
+from .accActions import updateRepeats
 
 def saveWord(req):
     tableId = req.POST.get("tableId")
@@ -61,4 +60,33 @@ def renameList(req):
     listName = wordsLists[listId]
     wordsListsNames = wordsListsNames.replace(f";{listName}", f";{newName}", 1)
     UserStat.objects.filter(user_id=id).update(wordsListsNames=wordsListsNames)
+    return HttpResponse("success")
+
+def getAllWords(req):
+    wordsObjs = WordsStat.objects.filter(user_id=req.user.id)
+    words=[]
+    for i in wordsObjs:
+        words.append({"article":i.article, "example":i.example, "lastRepeat":int(i.lastRepeat.utcnow().timestamp()), 
+                      "nextRepeat":int(i.nextRepeat.utcnow().timestamp()), "repeats":i.repeats, "transcription":i.transcription, 
+                      "translate":i.translate, "word":i.word, "word_id":i.id, "table_id":i.table_id})
+    return HttpResponse(dumps(words))
+
+def updateWords(req):
+    wordsList = loads(req.POST.get("words"))
+    for i in wordsList:
+        WordsStat.objects.filter(id=i["word_id"], table_id=i["table_id"]).update(
+            repeats=int(i["repeats"]),
+            lastRepeat=datetime.datetime.utcfromtimestamp(int(i["lastRepeat"])//1000+3600*3),
+            nextRepeat=datetime.datetime.utcfromtimestamp(int(i["nextRepeat"])//1000+3600*3)
+        )
+
+    updateRepeats(req)
+    userStat = UserStat.objects.get(user_id=req.user.id)
+    repeats = list(map(int, userStat.repeatsInWeek))
+    repeats[-1] += int(req.POST.get("wordsRepeated"))
+    studingWords = userStat.wordsBeingStudied
+    studingWords += int(req.POST.get("newWords"))
+
+    UserStat.objects.update(repeatsInWeek=repeats, wordsBeingStudied=studingWords)
+    
     return HttpResponse("success")
