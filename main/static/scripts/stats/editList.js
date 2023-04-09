@@ -13,7 +13,7 @@ function saveList() {
         },
         (data) => {
             if (data === "error") {
-                showMessage("На сервере произошла ошибка. Попробуйте позже.");
+                showMessage("На сервере произошла ошибка. Попробуйте позднее.");
                 $("#newListWindow").remove();
             } else if (data === "success") {
                 showMessage("Список успешно создан.");
@@ -43,7 +43,7 @@ function deleteList(listId) {
             if (data === "wrongPass") {
                 showMessage("Пароль введен неверно.");
             } else if (data === "error") {
-                showMessage("На сервере произошла ошибка. Попробуйте позже.");
+                showMessage("На сервере произошла ошибка. Попробуйте позднее.");
                 $("#passwordInput").remove();
             } else if (data === "success") {
                 showMessage("Список успешно удален.");
@@ -69,7 +69,7 @@ function renameList(listId) {
         },
         (data) => {
             if (data === "error") {
-                showMessage("На сервере произошла ошибка. Попробуйте позже.");
+                showMessage("На сервере произошла ошибка. Попробуйте позднее.");
                 $("#passwordInput").remove();
             } else if (data === "success") {
                 showMessage("Список успешно переименован.");

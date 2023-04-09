@@ -241,7 +241,7 @@
                     if (data == "success") {
                         showMessage("Пароль изменен.");
                         document.location.reload();
-                    } else showMessage("На сервере произошла ошибка.");
+                    } else showMessage("На сервере произошла ошибка. Попробуйте позднее.");
                 }
             )
         }
@@ -273,6 +273,8 @@
                             $("#message").fadeIn();
                             $("#submit").removeAttr("disabled");
                             break;
+                        case "error":
+                            $("#message").text("На сервере произошла ошибка, попробуйте позднее.")
                         default:
                             console.log(data);
                             break;

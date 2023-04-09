@@ -17,6 +17,6 @@ $.post(
         csrfmiddlewaretoken: token
     },
     (data) => {
-        if (data !== "err") $("#sendEmailFooter").attr("href", `mailto:dddeutsch.help@gmail.com?subject=Обращение от: ${data}`);
+        if (data !== "error") $("#sendEmailFooter").attr("href", `mailto:dddeutsch.help@gmail.com?subject=Обращение от: ${data}`);
     }
 );

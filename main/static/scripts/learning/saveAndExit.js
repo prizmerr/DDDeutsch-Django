@@ -12,7 +12,7 @@ function saveAndExit(needConfirm, needSave = true) {
                 wordsRepeated: wordsRepeated
             },
             (data) => {
-                if (data === "err") {
+                if (data === "error") {
                     showMessage("На сервере произошла ошибка. Слова не удалось сохранить.");
                 } else {
                     window.onbeforeunload = null;

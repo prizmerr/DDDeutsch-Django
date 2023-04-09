@@ -39,7 +39,7 @@ function saveWord(listId, wordId) {
         },
         (data) => {
             if (data === "error") {
-                showMessage("На сервере произошла ошибка. Попробуйте позже.");
+                showMessage("На сервере произошла ошибка. Попробуйте позднее.");
                 $("#changeWordWindow").remove();
             } else if (data === "success") {
                 showMessage("Слово успешно сохранено.");
@@ -63,7 +63,7 @@ function deleteWord(listId, wordId) {
             },
             (data) => {
                 if (data === "error") {
-                    showMessage("На сервере произошла ошибка. Попробуйте позже.");
+                    showMessage("На сервере произошла ошибка. Попробуйте позднее.");
                     $("#changeWordWindow").remove();
                 } else if (data === "success") {
                     showMessage("Слово успешно удалено.");

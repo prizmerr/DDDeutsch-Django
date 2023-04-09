@@ -235,6 +235,8 @@ function checkCodes() {
                         }
                     }
                 )
+            } else if (data == "error") {
+                showMessage("На сервере произошла ошибка. Попробуйте позднее.")
             } else {
                 showMessage("Убедитесь, что вы верно ввели код.")
             }
@@ -275,6 +277,8 @@ function changePassFunc() {
                 showMessage("Неверно введен старый пароль.");
             } else if (data=="success") {
                 document.location.reload();
+            } else if (data=="error") {
+                showMessage("На сервере произошла ошибка. Попробуйте позднее.")
             }
         }
     );
@@ -293,6 +297,8 @@ function delPass() {
         (data) => {
             if (data == "wrongPass") {
                 showMessage("Неверно указан пароль.");
+            } else if (data == "error") {
+                showMessage("На сервере произошла ошибка. Попробуйте позднее.")
             } else {
                 document.location.href = data;
             }
@@ -333,8 +339,10 @@ function sendMessage() {
                     showMessage("Сообщение было успешно отправлено разработчикам!");
                     $("#writeTextField").val("")
                     $("#sendText").removeAttr("disabled");
+                } else if (data == "error") {
+                    showMessage("На сервере произошла ошибка. Попробуйте позднее.")
                 } else {
-                    showMessage("На сервере произошла ошибка. Вы можете попробовать позже или написать на почту \"dddeutsch.help@gmail.com\"");
+                    showMessage("На сервере произошла ошибка. Вы можете попробовать позднее или написать на почту \"dddeutsch.help@gmail.com\"");
                     $("#sendText").removeAttr("disabled");
                 }
             }
