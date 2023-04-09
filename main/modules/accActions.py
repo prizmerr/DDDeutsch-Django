@@ -1,9 +1,12 @@
+import logging
 from django.http import HttpResponse, JsonResponse
 from django.db import Error
 from django.contrib.auth.models import User
 from datetime import datetime, timedelta, timezone
 from ..models import WordsStat, MainWord, UserStat
 from django.contrib.auth import authenticate, login, logout
+
+logger = logging.getLogger(__name__)
 
 def tryToRegister(req):
     usname = req.POST.get("login", "undef")
