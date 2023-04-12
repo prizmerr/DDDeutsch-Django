@@ -1,6 +1,2 @@
 /DDDeutsch/.env
-/__pycache__
-/DDDeutsch/__pycache__
-/main/__pycache__
-/main/magrations/__pycache__
-/main/modules/__pycache__
+**/__pycache__
