@@ -1,0 +1,4 @@
+User-agent: 
+Crawl-delay: 1
+Host: https://https://dddeutsch.pythonanywhere.com/enter/
+Sitemap: sitemap.xm
