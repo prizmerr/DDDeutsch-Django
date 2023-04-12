@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'DDDeutsch.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dddeutsch',
+        'NAME': env('DB_NAME'),
         'USER': env('MYSQL_USER'),
         'PASSWORD': env('MYSQL_PASSWORD'),
         'HOST': env('MYSQL_HOST'),
