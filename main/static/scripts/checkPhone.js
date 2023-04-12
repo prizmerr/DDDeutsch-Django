@@ -14,6 +14,7 @@ if (window.innerWidth < window.innerHeight) {
     $("#mainRegBox").css({"padding":"5%", "margin-top":"10%"});
     $("#mainRegBox").attr("id", "d-flex flex-wrap");
     $(".regBlock").css("width", "100%");
+    $("##regHeader").css("font-size", "6vh");
 
     if (document.location.href.split("/").pop() === "enter") {
         $("#enterHeader").css("font-size", "6vh");
