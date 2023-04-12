@@ -8,6 +8,12 @@ if (window.innerWidth < window.innerHeight) {
     $("#footer").addClass("justify-content-center");
     $("#footerLinks").removeClass("justify-content-end");
     $("#footerLinks").addClass("justify-content-center");
+    $("#mainEnterBox").css("padding", "5%");
+    $("#mainEnterBox").attr("id", "d-flex flex-wrap");
+    $(".enterBlock").css("width", "100%");
+    $("#mainRegBox").css({"padding":"5%", "margin-top":"10%"});
+    $("#mainRegBox").attr("id", "d-flex flex-wrap");
+    $(".regBlock").css("width", "100%");
 
     if (document.location.href.split("/").pop() === "enter") {
         $("#enterHeader").css("font-size", "6vh");
