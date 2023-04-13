@@ -1,3 +1,4 @@
 /DDDeutsch/.env
 **/__pycache__
 *.log
+/main/static/fonts
