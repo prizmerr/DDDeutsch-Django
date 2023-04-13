@@ -71,6 +71,7 @@ function ratioRightAnswer() {
 }
 
 function ratioWrongAnswer() {
+    saveWrongAnswer();
     words.push(words.splice(wordId, 1)[0]);
     showRatioWord();
 }
