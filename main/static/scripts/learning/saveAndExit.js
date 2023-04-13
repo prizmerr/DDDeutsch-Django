@@ -8,6 +8,7 @@ function saveAndExit(needConfirm, needSave = true) {
             {
                 csrfmiddlewaretoken: token,
                 words: JSON.stringify(newWordsList),
+                wrongWords: JSON.stringify(wrongWordsList),
                 newWords: newWordsLearned,
                 wordsRepeated: wordsRepeated
             },

@@ -33,6 +33,7 @@ function cardsRightAnswer() {
 }
 
 function cardsWrongAnswer() {
+    saveWrongAnswer();
     words.push(words.splice(wordId, 1)[0]);
     showCardWord();
 }

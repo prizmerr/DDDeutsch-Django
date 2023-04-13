@@ -100,8 +100,8 @@ def getAllWords(req):
         return HttpResponse("error")
 
 def updateWords(req):
-    wordsList = loads(req.POST.get("words"))
     try:
+        wordsList = loads(req.POST.get("words")) + loads(req.POST.get("wrongWords"))
         for i in wordsList:
             WordsStat.objects.filter(id=i["word_id"], table_id=i["table_id"]).update(
                 repeats=int(i["repeats"]),

@@ -154,6 +154,7 @@ let gameId;
 let words;
 let gameTime = 0;
 let newWordsList = [];
+let wrongWordsList = [];
 let messageWindowsFill = "#9effba";
 let newWordsLearned = 0;
 let wordsRepeated = 0;
