@@ -48,5 +48,7 @@ urlpatterns = [
     path('accActions/', include(urlAccActions)),
     path('study/', include(urlStudy)),
     path('email/', include(urlEmail)),
-    path('words/', include(urlWords))
+    path('words/', include(urlWords)),
+    path('robots.txt/', views.robots),
+    path('sitemap.xml/', views.sitemap),
 ]
