@@ -1,12 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from datetime import timedelta
 
 def startPage(req):
-    if req.user.is_authenticated:
-        return HttpResponseRedirect("/study/profil/")
-    else:
-        return HttpResponseRedirect("/enter/")
+    return HttpResponsePermanentRedirect("/enter/")
     
 def enterPage(req):
     if req.user.is_authenticated:
