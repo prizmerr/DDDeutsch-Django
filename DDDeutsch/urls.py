@@ -42,6 +42,7 @@ urlWords = [
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.startPage),
+    path('enter/sitemap.xml/', views.sitemap),
     path('enter/', views.enterPage),
     path('enter/register/', views.registerPage),
     path('setCookie/', views.setCookie),
