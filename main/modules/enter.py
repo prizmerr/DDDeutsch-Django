@@ -21,3 +21,6 @@ def registerPage(req):
         return HttpResponseRedirect("/study/profil/")
     else:
         return render(req, "register.html")
+
+def page404(req, exception, template_name="404page.html"):
+    return render(req, template_name)

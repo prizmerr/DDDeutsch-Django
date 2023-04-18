@@ -53,3 +53,5 @@ urlpatterns = [
     re_path(r'robots.txt/?$', views.robots),
     re_path(r'sitemap.xml/?$', views.sitemap),
 ]
+
+handler404 = "main.views.page404"
