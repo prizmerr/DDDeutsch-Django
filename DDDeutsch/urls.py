@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from main import views
 
 
@@ -49,6 +49,6 @@ urlpatterns = [
     path('study/', include(urlStudy)),
     path('email/', include(urlEmail)),
     path('words/', include(urlWords)),
-    path('robots.txt', views.robots),
-    path('sitemap.xml', views.sitemap),
+    re_path(r'robots.txt/?$', views.robots),
+    re_path(r'sitemap.xml/?$', views.sitemap),
 ]
