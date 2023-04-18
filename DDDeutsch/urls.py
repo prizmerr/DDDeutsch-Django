@@ -49,6 +49,6 @@ urlpatterns = [
     path('study/', include(urlStudy)),
     path('email/', include(urlEmail)),
     path('words/', include(urlWords)),
-    path('robots.txt/', views.robots),
-    path('sitemap.xml/', views.sitemap),
+    path('robots.txt', views.robots),
+    path('sitemap.xml', views.sitemap),
 ]
