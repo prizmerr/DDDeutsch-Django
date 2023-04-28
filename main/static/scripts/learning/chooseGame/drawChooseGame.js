@@ -41,8 +41,8 @@ function drawChooseGame() {
     mainLayer.add(articleText);
 
     // прямоугольники со словами
-    checkImg.src = "../../images/check.png";
-    checkedImg.src = "../../images/checked.png";
+    checkImg.src = checkSrc;
+    checkedImg.src = checkedSrc;
     for (let i = 0; i < 6; i++) {
         const text = new Konva.Text({
             x: 0,
