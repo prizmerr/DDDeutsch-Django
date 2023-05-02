@@ -98,7 +98,7 @@ function createWordsList(words, allWords = false) {
     let finalWords = [];
     let newWords = 0;
     for (let i = 0; i < words.length; i++) {
-        if (!allWords && words[i].nextRepeat < dateNow) {
+        if (!allWords && words[i].nextRepeat * 1000 < dateNow) {
             if (words[i].nextRepeat === 0 && newWords < 5) {
                 finalWords.push(words[i]); 
                 newWords++;

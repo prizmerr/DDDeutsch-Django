@@ -91,8 +91,8 @@ def getAllWords(req):
         wordsObjs = WordsStat.objects.filter(user_id=req.user.id)
         words=[]
         for i in wordsObjs:
-            words.append({"article":i.article, "example":i.example, "lastRepeat":int(i.lastRepeat.utcnow().timestamp()), 
-                          "nextRepeat":int(i.nextRepeat.utcnow().timestamp()), "repeats":i.repeats, "transcription":i.transcription, 
+            words.append({"article":i.article, "example":i.example, "lastRepeat":int(i.lastRepeat.timestamp()), 
+                          "nextRepeat":int(i.nextRepeat.timestamp()), "repeats":i.repeats, "transcription":i.transcription, 
                           "translate":i.translate, "word":i.word, "word_id":i.id, "table_id":i.table_id})
         return HttpResponse(dumps(words))
     except Error as err:
@@ -108,6 +108,7 @@ def updateWords(req):
                 lastRepeat=datetime.datetime.utcfromtimestamp(int(i["lastRepeat"])//1000+3600*3),
                 nextRepeat=datetime.datetime.utcfromtimestamp(int(i["nextRepeat"])//1000+3600*3)
             )
+            print(int(i["lastRepeat"])//1000+3600*3, int(i["nextRepeat"])//1000+3600*3)
     except Error as err:
         logger.error(err)
         return HttpResponse("error")
