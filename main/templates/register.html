@@ -43,12 +43,13 @@
                 <input placeholder="Придумайте логин" name="login" id="login"
                     class="form-control form-control-lg inputField">
                 <label class="labelField">Пароль:</label>
-                <div id="passBox1" class="passBox input-group mb-4 inputField">
+                <div id="passBox1" class="passBox input-group inputField">
                     <input placeholder="Придумайте пароль" name="pass1" type="password" id="pass1"
                         class="form-control form-control-lg" aria-describedby="eye1">
                     <button class="btn btn-outline-secondary" id="eye1"><img src="{% static 'images/svg/eye-opened.svg' %}"
                             id="passEyeImg1" class="eyes"></button>
                 </div>
+                <span style="font-size:0.8rem">В пароле должны использоваться цифры, заглавные и строчные буквы. Пароль должен быть длиннее 8 символов</span>
                 <div id="passBox2" class="passBox input-group mb-4 inputField">
                     <input placeholder="Повторите пароль" name="pass2" type="password" id="pass2"
                         class="form-control form-control-lg" aria-describedby="eye2">
