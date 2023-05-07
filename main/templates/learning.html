@@ -35,8 +35,28 @@
             let turnSrc = "{% static 'images/turn.png' %}"
             let checkSrc = "{% static 'images/check.png' %}"
             let checkedSrc = "{% static 'images/checked.png' %}"
+            let isDemo = document.location.search == "?demo"
+            // check logIn
+            $.get(
+                "/accActions/updateRepeatsInWeek",
+                (data) => {
+                    if (data == "error") {
+                        showMessage("На сервере произошла ошибка.");
+                    } else if (data == "unlogged" && !isDemo) {
+                        document.location["href"] = "/"
+                    } else if (data != "unlogged" && isDemo) {
+                        document.location.search = ""
+                    }
+                }
+            );
         </script>
-        <title>Обучение</title>
+        <title>
+            {% if demo %}
+            Обучение (демо)
+            {% else %}
+            Обучение
+            {% endif %}
+        </title>
     </head>
     <body class="d-flex flex-column min-vh-100">
         {% include 'partials/header.html' %}
@@ -48,7 +68,13 @@
                 <div id="mode1", class="card">
                     <div class="card-body">
                         <h4 class="card-title">Соотношение</h4>
-                        <h6 class="cart-subtitle">Режим: в зачет / тренировка</h6>
+                        <h6 class="cart-subtitle">
+                            {% if demo %}
+                            Режим: тренировка
+                            {% else %}
+                            Режим: в зачет / тренировка
+                            {% endif %}
+                        </h6>
                         <p id="cardText1", class="card-text">Перетащите слово к тому артиклю, который вы считаете правильным.</p>
                         <button id="cartButt1", class="btn btn-primary cardButtons", onclick="play(1)">Играть</button>
                     </div>
@@ -56,7 +82,13 @@
                 <div id="mode2", class="card">
                     <div class="card-body">
                         <h4 class="card-title">Карточки</h4>
-                        <h6 class="cart-subtitle">Режим: в зачет / тренировка</h6>
+                        <h6 class="cart-subtitle">
+                            {% if demo %}
+                            Режим: тренировка
+                            {% else %}
+                            Режим: в зачет / тренировка
+                            {% endif %}
+                        </h6>
                         <p id="cardText1", class="card-text">Переворачивайте карточки и запоминайте артикли.</p>
                         <button id="cartButt1", class="btn btn-primary cardButtons", onclick="play(2)">Играть</button>
                     </div>

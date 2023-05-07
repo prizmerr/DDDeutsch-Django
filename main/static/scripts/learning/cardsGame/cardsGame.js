@@ -2,11 +2,20 @@ let cardsWords;
 
 function cardsGame() {
     getAllWords().then((res) => {
-        if (res !== "err") {
-            cardsWords = res;
-            drawChooseMode(startCards);
+        if (!isDemo) {
+            if (res !== "err") {
+                cardsWords = res;
+                drawChooseMode(startCards);
+            } else {
+                showMessage("На сервере произошла ошибка. Попробуйте позднее.");
+            }
         } else {
-            showMessage("На сервере произошла ошибка. Попробуйте позднее.");
+            if (res !== "err") {
+                cardsWords = res;
+                startCards("workout")
+            } else {
+                showMessage("На сервере произошла ошибка. Попробуйте позднее.");
+            }
         }
     });
 }

@@ -7,4 +7,5 @@ def stats(req):
     return render(req, "stats.html")
 
 def learning(req):
-    return render(req, "learning.html")
+    isDemo = req.GET.get("demo") != None
+    return render(req, "learning.html", context={"demo":isDemo})

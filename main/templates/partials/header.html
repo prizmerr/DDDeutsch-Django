@@ -2,6 +2,11 @@
 <header id="header" class="d-flex flex-wrap justify-content-center pt-3">
     <img src="{% static 'images/bigLogo.png' %}" id="headerLogo" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto ms-lg">
     <ul id="pills" class="nav nav-pills me-lg">
+        {% if demo %}
+        <li id="headerProfil" class="nav-item p-3">
+            <a href="/" class="nav-link" id="learnLink">Вернуться</a>
+        </li>
+        {% else %}
         <li id="headerStudy" class="nav-item p-3">
             <a href="/study/learning" class="nav-link" id="learnLink">Обучение</a>
         </li>
@@ -11,5 +16,7 @@
         <li id="headerStats" class="nav-item p-3">
             <a href="/study/stats" class="nav-link" id="statsLink">Статистика</a>
         </li>
+        {% endif %}
+        
     </ul>
 </header>

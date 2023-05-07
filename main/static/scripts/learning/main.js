@@ -83,7 +83,12 @@ function play(id) {
 
 async function getAllWords() {
     try {
-        let res = await $.get("/words/getAllWords/");
+        let res;
+        if (isDemo) {
+            res = await $.get("/words/getAllWords?demo");
+        } else {
+            res = await $.get("/words/getAllWords/");
+        }
         if (res !== "err") return res;
         else throw new Error();
     } catch (err) {

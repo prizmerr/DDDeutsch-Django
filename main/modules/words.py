@@ -1,6 +1,6 @@
 import logging
 from django.http import HttpResponse
-from ..models import WordsStat, UserStat
+from ..models import WordsStat, UserStat, MainWord
 from django.contrib.auth import authenticate
 from json import loads, dumps
 import datetime
@@ -88,13 +88,22 @@ def renameList(req):
 
 def getAllWords(req):
     try:
-        wordsObjs = WordsStat.objects.filter(user_id=req.user.id)
+        isDemo = req.GET.get("demo") != None
         words=[]
-        for i in wordsObjs:
-            words.append({"article":i.article, "example":i.example, "lastRepeat":int(i.lastRepeat.timestamp()), 
-                          "nextRepeat":int(i.nextRepeat.timestamp()), "repeats":i.repeats, "transcription":i.transcription, 
-                          "translate":i.translate, "word":i.word, "word_id":i.id, "table_id":i.table_id})
-        return HttpResponse(dumps(words))
+        if not isDemo:
+            wordsObjs = WordsStat.objects.filter(user_id=req.user.id)
+            for i in wordsObjs:
+                words.append({"article":i.article, "example":i.example, "lastRepeat":int(i.lastRepeat.timestamp()), 
+                              "nextRepeat":int(i.nextRepeat.timestamp()), "repeats":i.repeats, "transcription":i.transcription, 
+                              "translate":i.translate, "word":i.word, "word_id":i.id, "table_id":i.table_id})
+            return HttpResponse(dumps(words))
+        else:
+            wordsObjs = MainWord.objects.filter()
+            for i in wordsObjs:
+                words.append({"article":i.article, "example":i.example, "lastRepeat":0, 
+                              "nextRepeat":0, "repeats":i.repeats, "transcription":i.transcription, 
+                              "translate":i.translate, "word":i.word, "word_id":i.id, "table_id":i.table_id})
+            return HttpResponse(dumps(words))
     except Error as err:
         logger.error(err)
         return HttpResponse("error")

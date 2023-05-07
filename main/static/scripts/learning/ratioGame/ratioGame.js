@@ -2,11 +2,20 @@ let ratioWords;
 
 function ratioGame() {
     getAllWords().then((res) => {
-        if (res !== "err") {
-            ratioWords = res;
-            drawChooseMode(startRatio);
+        if (!isDemo) {
+            if (res !== "err") {
+                ratioWords = res;
+                drawChooseMode(startRatio);
+            } else {
+                showMessage("На сервере произошла ошибка. Попробуйте позднее.");
+            }
         } else {
-            showMessage("На сервере произошла ошибка. Попробуйте позднее.");
+            if (res !== "err") {
+                ratioWords = res;
+                startRatio("workout")
+            } else {
+                showMessage("На сервере произошла ошибка. Попробуйте позднее.");
+            }
         }
     });
 }
